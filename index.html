@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Osama | Mechatronics Engineer</title>
+  <meta name="description" content="Portfolio of Mohamed Osama — Mechatronics Engineering Student specialising in Embedded Systems, Industrial Automation, and PLC Programming." />
+
+  <!--
+    ╔══════════════════════════════════════════════════════╗
+    ║  Google Fonts                                        ║
+    ║  Space Grotesk — display headings                   ║
+    ║  Inter         — body copy                          ║
+    ║  JetBrains Mono— code / labels                      ║
+    ╚══════════════════════════════════════════════════════╝
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Open Graph (social sharing preview) -->
+  <meta property="og:title"       content="Mohamed Osama | Mechatronics Engineer" />
+  <meta property="og:description" content="Embedded Systems · Industrial Automation · TinyML on ESP32" />
+  <meta property="og:type"        content="website" />
+  <meta name="theme-color"        content="#00CFFF" />
+
+  <!-- External stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       BACKGROUND LAYERS
+       Both canvases are fixed behind all content.
+       Drawn entirely by JS (no DOM elements needed).
+  ════════════════════════════════════════════ -->
+  <!-- PCB circuit traces — the site's signature visual -->
+  <canvas id="pcb-canvas"      aria-hidden="true"></canvas>
+  <!-- Drifting particle field -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+
+  <!-- ══════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <!-- Logo -->
+    <div class="nav-logo">MO<span class="accent">.</span></div>
+
+    <!-- Desktop links -->
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Timeline</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact" class="nav-btn">Contact</a></li>
+    </ul>
+
+    <!-- Hamburger (mobile) -->
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Toggle mobile navigation"
+      aria-expanded="false"
+      onclick="toggleMobileNav()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile full-screen overlay -->
+  <div class="mobile-overlay" id="mobile-overlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <a href="#about"          onclick="closeMobileNav()">About</a>
+    <a href="#skills"         onclick="closeMobileNav()">Skills</a>
+    <a href="#projects"       onclick="closeMobileNav()">Projects</a>
+    <a href="#education"      onclick="closeMobileNav()">Timeline</a>
+    <a href="#certifications" onclick="closeMobileNav()">Certs</a>
+    <a href="#contact"        onclick="closeMobileNav()">Contact</a>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 1 — HERO
+       Full-screen immersive opening with animated
+       floating icons, typewriter eyebrow, and CTA.
+  ════════════════════════════════════════════ -->
+  <section id="hero" aria-label="Introduction">
+    <!-- Ambient colour orbs (CSS animated) -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+
+      <!-- ── Text column ── -->
+      <div class="hero-text">
+        <!-- Typewriter text — JS fills this in character by character -->
+        <div class="hero-eyebrow" id="hero-eyebrow">Mechatronics Engineering Student</div>
+
+        <h1 class="hero-headline">
+          Building the<br>
+          future where<br>
+          <span class="line-accent">code meets hardware</span>
+        </h1>
+
+        <p class="hero-tagline">
+          I craft intelligent systems that bridge the digital and physical worlds —
+          from AI-powered wearables on microcontrollers to industrial PLC automation.
+        </p>
+
+        <!-- Keyword pills — sourced from CV technical skills -->
+        <div class="hero-tags">
+          <span class="htag htag-c">ESP32 · TinyML</span>
+          <span class="htag htag-v">PLC · TIA Portal</span>
+          <span class="htag htag-o">Industrial Automation</span>
+          <span class="htag htag-c">Embedded Systems</span>
+          <span class="htag htag-v">SolidWorks · CAD</span>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-fill">⚡ Explore My Work</a>
+          <!--
+            CV DOWNLOAD
+            ──────────────────────────────────────────
+            The CV file is included in this zip folder.
+            Its filename is already set below — just
+            make sure the .docx sits in the same folder
+            as index.html and both are served together.
+          -->
+          <a href="Mohamed_Osama_CV_ATS__1_.docx" download class="btn btn-outline">↓ Download CV</a>
+        </div>
+      </div>
+
+      <!-- ── Visual column ── -->
+      <div class="hero-visual">
+        <div class="photo-wrap">
+          <!-- Pulsing outer glow -->
+          <div class="photo-glow" aria-hidden="true"></div>
+          <!-- Dual rotating gradient rings -->
+          <div class="ring ring-1" aria-hidden="true"></div>
+          <div class="ring ring-2" aria-hidden="true"></div>
+
+          <!--
+            ╔══════════════════════════════════════════════════╗
+            ║  HOW TO ADD YOUR PHOTO                           ║
+            ║                                                  ║
+            ║  1. Copy your photo into the "images/" folder    ║
+            ║     and name it  profile.jpg                     ║
+            ║                                                  ║
+            ║  2. Delete the <div class="profile-placeholder"> ║
+            ║     block below (lines until the comment END)    ║
+            ║                                                  ║
+            ║  3. Uncomment the <img> tag below it             ║
+            ╚══════════════════════════════════════════════════╝
+          -->
+
+          <img
+            src="images/profile.jpg"
+            alt="Mohamed Osama — Mechatronics Engineering Student"
+            class="profile-photo"
+          />
+
+          <!-- Floating tech icon badges -->
+          <div class="fi" aria-hidden="true">⚙️</div>
+          <div class="fi" aria-hidden="true">🤖</div>
+          <div class="fi" aria-hidden="true">🔌</div>
+          <div class="fi" aria-hidden="true">🧠</div>
+          <div class="fi" aria-hidden="true">📡</div>
+        </div>
+      </div>
+
+    </div><!-- /hero-inner -->
+
+    <!-- Animated scroll indicator -->
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-mouse"></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 2 — ABOUT
+       Compelling personal introduction + stat cards.
+  ════════════════════════════════════════════ -->
+  <section id="about" aria-label="About Mohamed">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Stat cards — left side -->
+        <div class="reveal from-left">
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-val" data-count="2" data-suffix="+">2+</div>
+              <div class="stat-lbl">Years Coding</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val" data-count="3" data-suffix="+">3+</div>
+              <div class="stat-lbl">Live Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val" data-count="6" data-suffix="+">6+</div>
+              <div class="stat-lbl">Tech Skills</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val" data-count="2028" data-suffix="">2028</div>
+              <div class="stat-lbl">Graduation</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body copy — right side -->
+        <div class="about-text reveal from-right">
+          <span class="s-eyebrow">Who I Am</span>
+          <h2 class="s-title">
+            Engineer who builds<br>
+            <span class="grad">real-world systems</span>
+          </h2>
+          <p>
+            I'm Mohamed Osama — a Mechatronics Engineering student at Delta University
+            for Science and Technology. My passion lives at the intersection of hardware
+            and software, where sensors talk to microcontrollers and machine learning
+            runs on the edge of embedded devices.
+          </p>
+          <p>
+            My flagship project, the <strong style="color:var(--text-1)">Smart Gloves for Sign
+            Language Translation</strong>, combines wearable hardware (ESP32-S3, flex sensors,
+            MPU6050 IMU), on-device ML models trained via Edge Impulse, and a real-time
+            audio output pipeline — making communication more accessible for the deaf and
+            mute community.
+          </p>
+          <p>
+            I'm actively seeking internship and training opportunities in industrial
+            automation and embedded engineering — ready to contribute from day one.
+          </p>
+          <div class="trait-row">
+            <span class="trait">Problem Solver</span>
+            <span class="trait">Hardware Thinker</span>
+            <span class="trait">ML on the Edge</span>
+            <span class="trait">Continuous Learner</span>
+            <span class="trait">Team Player</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 3 — SKILLS
+       Animated progress-bar cards grouped by category.
+  ════════════════════════════════════════════ -->
+  <section id="skills" aria-label="Skills and expertise">
+    <div class="container">
+      <div class="s-header reveal" style="text-align:center;">
+        <span class="s-eyebrow">Technical Arsenal</span>
+        <h2 class="s-title">Skills &amp; <span class="grad">Expertise</span></h2>
+        <p class="s-sub" style="margin:0 auto;">
+          Built through real projects, structured coursework, and hands-on experimentation.
+        </p>
+        <div class="divider-line" style="margin:1.2rem auto 0;"></div>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- Programming Languages -->
+        <div class="skill-card reveal d1">
+          <div class="sc-icon c">💻</div>
+          <div class="sc-title">Programming Languages</div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">C / C++</span>
+              <span class="sk-pct">85%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="85"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">Python</span>
+              <span class="sk-pct">70%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="70"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Embedded Systems -->
+        <div class="skill-card reveal d2">
+          <div class="sc-icon v">🔧</div>
+          <div class="sc-title">Embedded Systems</div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">ESP32 / Arduino</span>
+              <span class="sk-pct">88%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="88"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">Sensor Interfacing</span>
+              <span class="sk-pct">82%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="82"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">MCU Programming</span>
+              <span class="sk-pct">75%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="75"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industrial Automation -->
+        <div class="skill-card reveal d3">
+          <div class="sc-icon o">⚡</div>
+          <div class="sc-title">Industrial Automation</div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">PLC Programming</span>
+              <span class="sk-pct">72%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="72"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">Siemens TIA Portal</span>
+              <span class="sk-pct">68%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="68"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">Ladder Logic / FBD</span>
+              <span class="sk-pct">65%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="65"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Machine Learning -->
+        <div class="skill-card reveal d4">
+          <div class="sc-icon g">🧠</div>
+          <div class="sc-title">Machine Learning</div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">TinyML</span>
+              <span class="sk-pct">70%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="70"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">Edge Impulse</span>
+              <span class="sk-pct">68%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="68"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">AI Fundamentals</span>
+              <span class="sk-pct">55%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="55"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CAD & Design -->
+        <div class="skill-card reveal d5">
+          <div class="sc-icon c">📐</div>
+          <div class="sc-title">CAD &amp; Design</div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">SolidWorks</span>
+              <span class="sk-pct">65%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="65"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">AutoCAD</span>
+              <span class="sk-pct">60%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="60"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Acquisition -->
+        <div class="skill-card reveal d6">
+          <div class="sc-icon v">📊</div>
+          <div class="sc-title">Data Acquisition</div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">Flex Sensors</span>
+              <span class="sk-pct">85%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="85"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">MPU6050 IMU</span>
+              <span class="sk-pct">80%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="80"></div>
+            </div>
+          </div>
+          <div class="sk">
+            <div class="sk-row">
+              <span class="sk-name">Real-time Monitoring</span>
+              <span class="sk-pct">72%</span>
+            </div>
+            <div class="sk-track">
+              <div class="sk-fill" data-w="72"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /skills-grid -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 4 — PROJECTS
+       Interactive cards with shimmer stripe, tech
+       badges, hover lift + tilt (via JS).
+  ════════════════════════════════════════════ -->
+  <section id="projects" aria-label="Featured projects">
+    <div class="container">
+      <div class="s-header reveal" style="text-align:center;">
+        <span class="s-eyebrow">What I've Built</span>
+        <h2 class="s-title">Featured <span class="grad">Projects</span></h2>
+        <p class="s-sub" style="margin:0 auto;">
+          Real engineering solutions — from idea to deployed hardware.
+        </p>
+        <div class="divider-line" style="margin:1.2rem auto 0;"></div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- PROJECT 01 — Smart Gloves -->
+        <article class="proj-card reveal d1">
+          <div class="proj-stripe" aria-hidden="true"></div>
+          <div class="proj-body">
+            <div class="proj-num">PROJECT · 01</div>
+            <h3 class="proj-title">Smart Gloves for Sign Language Translation</h3>
+            <p class="proj-desc">
+              A wearable real-time system converting sign language gestures into spoken
+              speech. End-to-end AI pipeline — from sensor data collection to TinyML
+              inference — deployed on a microcontroller with audio playback output.
+            </p>
+            <div class="proj-tech">
+              <span class="tbadge">ESP32-S3</span>
+              <span class="tbadge">TinyML</span>
+              <span class="tbadge">Edge Impulse</span>
+              <span class="tbadge">Flex Sensors</span>
+              <span class="tbadge">MPU6050</span>
+              <span class="tbadge">C++</span>
+            </div>
+            <div class="proj-footer">
+              <span class="proj-cat">EMBEDDED · AI/ML · WEARABLE</span>
+              <span class="proj-emoji" aria-hidden="true">🤖</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 02 — PLC Automation -->
+        <article class="proj-card reveal d2">
+          <div class="proj-stripe" aria-hidden="true"></div>
+          <div class="proj-body">
+            <div class="proj-num">PROJECT · 02</div>
+            <h3 class="proj-title">PLC-Based Industrial Automation Systems</h3>
+            <p class="proj-desc">
+              Designed and simulated industrial control systems using Siemens TIA Portal.
+              Implemented ladder logic and function block diagrams for process control,
+              full I/O configuration, and real-world sensor integration scenarios.
+            </p>
+            <div class="proj-tech">
+              <span class="tbadge">Siemens TIA Portal</span>
+              <span class="tbadge">Ladder Logic</span>
+              <span class="tbadge">FBD</span>
+              <span class="tbadge">I/O Config</span>
+              <span class="tbadge">Process Control</span>
+            </div>
+            <div class="proj-footer">
+              <span class="proj-cat">AUTOMATION · PLC · CONTROL</span>
+              <span class="proj-emoji" aria-hidden="true">⚙️</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 03 — Embedded Systems Portfolio -->
+        <article class="proj-card reveal d3">
+          <div class="proj-stripe" aria-hidden="true"></div>
+          <div class="proj-body">
+            <div class="proj-num">PROJECT · 03</div>
+            <h3 class="proj-title">Embedded Systems Application Portfolio</h3>
+            <p class="proj-desc">
+              A collection of microcontroller-based applications built on Arduino and
+              ESP32 platforms: sensor monitoring dashboards, real-time data acquisition,
+              signal processing pipelines, and I2C/SPI peripheral interfacing.
+            </p>
+            <div class="proj-tech">
+              <span class="tbadge">Arduino</span>
+              <span class="tbadge">ESP32</span>
+              <span class="tbadge">C/C++</span>
+              <span class="tbadge">I2C / SPI</span>
+              <span class="tbadge">Real-time DSP</span>
+            </div>
+            <div class="proj-footer">
+              <span class="proj-cat">EMBEDDED · SENSORS · SIGNALS</span>
+              <span class="proj-emoji" aria-hidden="true">📡</span>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /projects-grid -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 5 — EDUCATION / TIMELINE
+       Alternating two-column vertical timeline with
+       glowing PCB-node dots and glassmorphism cards.
+  ════════════════════════════════════════════ -->
+  <section id="education" aria-label="Education and milestones">
+    <div class="container">
+      <div class="s-header reveal" style="text-align:center;">
+        <span class="s-eyebrow">My Journey</span>
+        <h2 class="s-title">Education &amp; <span class="grad">Timeline</span></h2>
+        <p class="s-sub" style="margin:0 auto;">
+          The academic foundation and milestones that power everything I build.
+        </p>
+        <div class="divider-line" style="margin:1.2rem auto 0;"></div>
+      </div>
+
+      <div class="timeline" role="list">
+
+        <!-- ENTRY 1 — Degree -->
+        <div class="tl-item reveal d1" role="listitem">
+          <div class="tl-card">
+            <div class="tl-icon" aria-hidden="true">🎓</div>
+            <div class="tl-date">2024 — 2028</div>
+            <div class="tl-title">B.Tech in Mechatronics Engineering</div>
+            <div class="tl-org">Delta University for Science and Technology</div>
+            <p class="tl-desc">
+              Core focus: Embedded Systems, Industrial Automation, Robotics,
+              Control Systems, and CAD Design. Expected graduation 2028.
+            </p>
+          </div>
+          <div class="tl-spacer" aria-hidden="true"></div>
+          <div class="tl-dot" aria-hidden="true"></div>
+        </div>
+
+        <!-- ENTRY 2 — Smart Gloves Project -->
+        <div class="tl-item reveal d2" role="listitem">
+          <div class="tl-spacer" aria-hidden="true"></div>
+          <div class="tl-card">
+            <div class="tl-icon" aria-hidden="true">🤖</div>
+            <div class="tl-date">2025 — Present</div>
+            <div class="tl-title">Smart Gloves Project — Lead Engineer</div>
+            <div class="tl-org">Delta University for Science and Technology</div>
+            <p class="tl-desc">
+              Shipped a full end-to-end AI wearable: hardware architecture, sensor
+              fusion, ML model training on Edge Impulse, and real-time audio
+              output on ESP32-S3.
+            </p>
+          </div>
+          <div class="tl-dot v" aria-hidden="true"></div>
+        </div>
+
+        <!-- ENTRY 3 — Automation Training -->
+        <div class="tl-item reveal d3" role="listitem">
+          <div class="tl-card">
+            <div class="tl-icon" aria-hidden="true">⚡</div>
+            <div class="tl-date">2024 — 2025</div>
+            <div class="tl-title">Industrial Automation Training</div>
+            <div class="tl-org">PLC &amp; TIA Portal Programs</div>
+            <p class="tl-desc">
+              Hands-on training in PLC programming with Siemens TIA Portal,
+              covering ladder logic, function block diagrams, and full industrial
+              control system simulation.
+            </p>
+          </div>
+          <div class="tl-spacer" aria-hidden="true"></div>
+          <div class="tl-dot" aria-hidden="true"></div>
+        </div>
+
+        <!-- ENTRY 4 — Certifications Track -->
+        <div class="tl-item reveal d4" role="listitem">
+          <div class="tl-spacer" aria-hidden="true"></div>
+          <div class="tl-card">
+            <div class="tl-icon" aria-hidden="true">📜</div>
+            <div class="tl-date">2024</div>
+            <div class="tl-title">Technical Certifications Track</div>
+            <div class="tl-org">Self-Directed Learning</div>
+            <p class="tl-desc">
+              Completed Python Programming, Microcontroller Based Systems, and
+              Embedded Systems Fundamentals — building a parallel industry-aligned
+              skill track alongside university study.
+            </p>
+          </div>
+          <div class="tl-dot v" aria-hidden="true"></div>
+        </div>
+
+      </div><!-- /timeline -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 6 — CERTIFICATIONS
+       Slide-in cards with bottom-line reveal.
+  ════════════════════════════════════════════ -->
+  <section id="certifications" aria-label="Certifications and training">
+    <div class="container">
+      <div class="s-header reveal" style="text-align:center;">
+        <span class="s-eyebrow">Credentials</span>
+        <h2 class="s-title">Certifications &amp; <span class="grad">Training</span></h2>
+        <p class="s-sub" style="margin:0 auto;">
+          Industry-aligned programs that validate hands-on technical expertise.
+        </p>
+        <div class="divider-line" style="margin:1.2rem auto 0;"></div>
+      </div>
+
+      <div class="certs-grid">
+        <div class="cert-card reveal d1">
+          <div class="cert-ico" aria-hidden="true">🐍</div>
+          <div>
+            <div class="cert-name">Python Programming</div>
+            <div class="cert-type">PROGRAMMING COURSE</div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal d2">
+          <div class="cert-ico" aria-hidden="true">🔧</div>
+          <div>
+            <div class="cert-name">Microcontroller Based Systems</div>
+            <div class="cert-type">EMBEDDED SYSTEMS COURSE</div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal d3">
+          <div class="cert-ico" aria-hidden="true">⚡</div>
+          <div>
+            <div class="cert-name">Industrial Automation Training</div>
+            <div class="cert-type">PLC &amp; AUTOMATION</div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal d4">
+          <div class="cert-ico" aria-hidden="true">💡</div>
+          <div>
+            <div class="cert-name">Embedded Systems Fundamentals</div>
+            <div class="cert-type">EMBEDDED SYSTEMS COURSE</div>
+          </div>
+        </div>
+      </div><!-- /certs-grid -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 7 — LANGUAGES
+  ════════════════════════════════════════════ -->
+  <section id="languages" aria-label="Language proficiencies">
+    <div class="container">
+      <div class="s-header reveal" style="text-align:center;">
+        <span class="s-eyebrow">Communication</span>
+        <h2 class="s-title">Languages</h2>
+        <div class="divider-line" style="margin:1.2rem auto 0;"></div>
+      </div>
+
+      <div class="lang-grid">
+        <!-- Arabic -->
+        <div class="lang-card reveal d1">
+          <div class="lang-flag" aria-hidden="true">🇪🇬</div>
+          <div class="lang-name">Arabic</div>
+          <div class="lang-lvl">NATIVE SPEAKER</div>
+          <div class="lang-dots" aria-label="Proficiency: 5 out of 5">
+            <span class="ld on"></span>
+            <span class="ld on"></span>
+            <span class="ld on"></span>
+            <span class="ld on"></span>
+            <span class="ld on"></span>
+          </div>
+        </div>
+
+        <!-- English -->
+        <div class="lang-card reveal d2">
+          <div class="lang-flag" aria-hidden="true">🇬🇧</div>
+          <div class="lang-name">English</div>
+          <div class="lang-lvl">GOOD · READ · WRITE · SPEAK</div>
+          <div class="lang-dots" aria-label="Proficiency: 3 out of 5">
+            <span class="ld on"></span>
+            <span class="ld on"></span>
+            <span class="ld on"></span>
+            <span class="ld"></span>
+            <span class="ld"></span>
+          </div>
+        </div>
+      </div><!-- /lang-grid -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 8 — CONTACT / FINAL CTA
+       Strong closing with large headline and
+       direct contact links.
+  ════════════════════════════════════════════ -->
+  <section id="contact" aria-label="Contact and collaboration">
+    <div class="contact-glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="contact-inner reveal">
+        <span class="s-eyebrow" style="display:block;margin-bottom:1.5rem;">Get In Touch</span>
+
+        <h2 class="contact-title">
+          Let's build something<br>
+          <span class="grad">amazing together</span>
+        </h2>
+
+        <p class="contact-sub">
+          Open to internship opportunities, collaboration ideas, and
+          conversations about embedded systems or industrial automation.
+        </p>
+
+        <div class="contact-cta">
+          <a href="mailto:mohamedosama4949@gmail.com" class="btn btn-fill">
+            ✉️ Send Me an Email
+          </a>
+          <a
+            href="https://linkedin.com/in/mohamed-osama-b22367335"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            🔗 LinkedIn Profile
+          </a>
+          <a
+            href="https://wa.me/201128683487"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            💬 WhatsApp
+          </a>
+        </div>
+
+        <div class="contact-info-row">
+          <a href="tel:+201128683487" class="ci-item">📞 +20 112 868 3487</a>
+          <a href="mailto:mohamedosama4949@gmail.com" class="ci-item">✉️ mohamedosama4949@gmail.com</a>
+          <span class="ci-item">📍 Quesna, Menoufia, Egypt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="foot-copy">
+      Designed &amp; built with ♥ · <span>Mohamed Osama</span> · © 2025
+    </div>
+    <div class="foot-links">
+      <a href="mailto:mohamedosama4949@gmail.com">✉️ Email</a>
+      <a href="tel:+201128683487">📞 Phone</a>
+      <a
+        href="https://wa.me/201128683487"
+        target="_blank"
+        rel="noopener noreferrer"
+      >💬 WhatsApp</a>
+      <a
+        href="https://linkedin.com/in/mohamed-osama-b22367335"
+        target="_blank"
+        rel="noopener noreferrer"
+      >🔗 LinkedIn</a>
+      <a href="Mohamed_Osama_CV_ATS__1_.docx" download class="foot-dl">
+        ↓ Download CV
+      </a>
+    </div>
+  </footer>
+
+
+  <!-- External JavaScript (deferred — loads after HTML) -->
+  <script src="js/main.js" defer></script>
+
+</body>
+</html>

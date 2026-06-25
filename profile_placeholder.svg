@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a1145"/>
+      <stop offset="100%" stop-color="#080D1A"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00CFFF" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#00CFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00CFFF"/>
+      <stop offset="100%" stop-color="#6E28D9"/>
+    </linearGradient>
+    <clipPath id="circle-clip">
+      <circle cx="200" cy="200" r="196"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="200" fill="url(#bg)"/>
+
+  <!-- Glow overlay -->
+  <circle cx="200" cy="200" r="200" fill="url(#glow)"/>
+
+  <!-- Border ring -->
+  <circle cx="200" cy="200" r="197" fill="none" stroke="#00CFFF" stroke-width="1.5" stroke-opacity="0.28"/>
+
+  <!-- Circuit-trace decoration lines -->
+  <g clip-path="url(#circle-clip)" opacity="0.12" stroke="#00CFFF" stroke-width="1" fill="none">
+    <line x1="80" y1="100" x2="160" y2="100"/>
+    <line x1="160" y1="100" x2="160" y2="60"/>
+    <circle cx="160" cy="60" r="3" fill="#00CFFF"/>
+    <circle cx="80" cy="100" r="3" fill="#00CFFF"/>
+    <line x1="240" y1="60" x2="240" y2="100"/>
+    <line x1="240" y1="100" x2="320" y2="100"/>
+    <circle cx="240" cy="60" r="3" fill="#00CFFF"/>
+    <circle cx="320" cy="100" r="3" fill="#00CFFF"/>
+    <line x1="320" y1="300" x2="240" y2="300"/>
+    <line x1="240" y1="300" x2="240" y2="340"/>
+    <circle cx="240" cy="340" r="3" fill="#00CFFF"/>
+    <circle cx="320" cy="300" r="3" fill="#00CFFF"/>
+    <line x1="80" y1="300" x2="160" y2="300"/>
+    <line x1="160" y1="300" x2="160" y2="340"/>
+    <circle cx="160" cy="340" r="3" fill="#00CFFF"/>
+    <circle cx="80" cy="300" r="3" fill="#00CFFF"/>
+  </g>
+
+  <!-- Silhouette person icon -->
+  <circle cx="200" cy="155" r="48" fill="#00CFFF" fill-opacity="0.09"/>
+  <path d="M200 110 a38 38 0 1 1 0.001 0Z" fill="#00CFFF" fill-opacity="0.18"/>
+  <circle cx="200" cy="148" r="32" fill="url(#text-grad)" fill-opacity="0.25"/>
+  <path d="M130 255 Q130 205 200 205 Q270 205 270 255" fill="url(#text-grad)" fill-opacity="0.2"/>
+
+  <!-- "MO" initials -->
+  <text
+    x="200" y="168"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Georgia, serif"
+    font-size="42"
+    font-weight="700"
+    fill="url(#text-grad)"
+    opacity="0.9"
+  >MO</text>
+
+  <!-- Instruction text -->
+  <text
+    x="200" y="240"
+    text-anchor="middle"
+    font-family="monospace"
+    font-size="11"
+    fill="#4A5270"
+    letter-spacing="0.5"
+  >REPLACE WITH YOUR PHOTO</text>
+  <text
+    x="200" y="258"
+    text-anchor="middle"
+    font-family="monospace"
+    font-size="10"
+    fill="#4A5270"
+  >images/profile.jpg</text>
+
+</svg>
